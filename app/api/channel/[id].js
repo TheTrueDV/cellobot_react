@@ -12,7 +12,6 @@ const handler = async (req, res, next) => {
       return next(error)
     }
     // do it
-    updateChannel(user.twitchId, req.body)
     res.json(user)
   } else {
   }
