@@ -1,18 +1,44 @@
-import { useRouter, Routes } from "blitz"
-import Layout from "app/core/layouts/Layout"
-import { SignupForm } from "app/auth/components/SignupForm"
+import { useEffect } from "react"
+import { useMutation, useRouterQuery } from "blitz"
+import createUser from "app/users/mutations/createUser"
+import createBot from "app/bots/mutations/createBot"
+import createChannel from "app/channels/mutations/createChannel"
 
-const SignupPage = () => {
-  const router = useRouter()
-  return (
-    <div>
-      <SignupForm onSuccess={() => router.push(Routes.Home())} />
-    </div>
-  )
+function Signup() {
+  const queryParams = useRouterQuery()
+  const [createUserMutation] = useMutation(createUser)
+  const [createBotMutation] = useMutation(createBot)
+  const [createChannelMutation] = useMutation(createChannel)
+  useEffect(() => {
+    createUserMutation(queryParams)
+      .then(({ user, additionalData }) => {
+        window.localStorage.setItem("twitch_id", user.twitchId)
+        window.localStorage.setItem("refresh_token", user.refreshToken)
+      })
+      .catch(console.error)
+  }, [])
+
+  useEffect(() => {
+    let refreshToken = window.localStorage.getItem("refresh_token")
+
+    createBotMutation(refreshToken)
+      .then((bot) => console.log(bot))
+      .catch(console.error)
+  }, [])
+
+  useEffect(() => {
+    let twitchId = window.localStorage.getItem("twitch_id")
+
+    createChannelMutation(twitchId)
+      .then((channel) => console.log(channel))
+      .catch(console.error)
+  }, [])
+  let twitchId
+  useEffect(() => {
+    twitchId = window.localStorage.getItem("twitch_id")
+  }, [])
+
+  return <span>Loading...</span>
 }
 
-SignupPage.redirectAuthenticatedTo = "/"
-
-SignupPage.getLayout = (page) => <Layout title="Sign Up">{page}</Layout>
-
-export default SignupPage
+export default Signup

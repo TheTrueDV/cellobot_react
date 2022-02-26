@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-key */
 import { Suspense } from "react"
 import { Image, Link, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
+const config = require("../config")
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
@@ -32,11 +34,19 @@ const UserInfo = () => {
       </>
     )
   } else {
+    const qs = new URLSearchParams({
+      client_id: "m0eg6aclh6ohz3pwvq1yx2r24j1pes",
+      redirect_uri: "http://localhost:3000/signup",
+      response_type: "code",
+      scope: "chat:read chat:edit whispers:read",
+    })
+    const twitchSignUpURL = `https://id.twitch.tv/oauth2/authorize?${qs}`
+
     return (
       <>
-        <Link href={Routes.SignupPage()}>
+        <Link href={twitchSignUpURL}>
           <a className="button small">
-            <strong>Sign Up</strong>
+            <strong>Join with Twitch</strong>
           </a>
         </Link>
         <Link href={Routes.LoginPage()}>

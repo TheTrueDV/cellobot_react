@@ -1,10 +1,13 @@
-import { sessionMiddleware, simpleRolesIsAuthorized } from "blitz"
+import { sessionMiddleware } from "blitz"
+import { simpleRolesIsAuthorized } from "customAdapter"
+import { decodeAuthHeader } from "./app/middlewares"
 const config = {
   middleware: [
     sessionMiddleware({
       cookiePrefix: "cellobot_react",
       isAuthorized: simpleRolesIsAuthorized,
     }),
+    // decodeAuthHeader,
   ],
   /* Uncomment this to customize the webpack config
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
