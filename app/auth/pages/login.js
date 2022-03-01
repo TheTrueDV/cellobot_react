@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { useRouter } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { LoginForm } from "app/auth/components/LoginForm"

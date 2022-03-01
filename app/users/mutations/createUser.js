@@ -1,7 +1,7 @@
 import axios from "axios"
 import config from "app/config"
 import db from "db"
-async function addUser({ code, scope }) {
+async function addUser({ code, scope }, ctx) {
   const authBaseUrl = "https://id.twitch.tv/oauth2"
   const authAPI = axios.create({
     baseURL: authBaseUrl,
@@ -45,6 +45,11 @@ async function addUser({ code, scope }) {
     })
   }
   const additionalData = { display_name, profile_image_url, email }
+
+  await ctx.session.$create({
+    userId: user.twitchId,
+  })
+
   return { user, additionalData }
 }
 

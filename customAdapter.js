@@ -8,6 +8,6 @@
  * @type CustomRolesIsAuthorizedArgs
  */
 
-export function simpleRolesIsAuthorized({ ctx, args }) {
+export function CustomRolesIsAuthorizedArgs({ ctx, args }) {
   return true
 }

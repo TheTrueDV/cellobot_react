@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { useMutation } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { LabeledTextField } from "app/core/components/LabeledTextField"

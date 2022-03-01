@@ -5,7 +5,7 @@ import Layout from "app/core/layouts/Layout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import logo from "public/logo.png"
-const config = require("../config")
+const config = require("../config").default
 /*
  * This file is just for a pleasant getting started page for your new app.
  * You can delete everything in here and start from scratch if you like.
@@ -47,6 +47,11 @@ const UserInfo = () => {
         <Link href={twitchSignUpURL}>
           <a className="button small">
             <strong>Join with Twitch</strong>
+          </a>
+        </Link>
+        <Link href={Routes.Signup()}>
+          <a className="button small">
+            <strong>Register</strong>
           </a>
         </Link>
         <Link href={Routes.LoginPage()}>

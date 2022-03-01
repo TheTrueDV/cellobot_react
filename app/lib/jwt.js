@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken")
-const config = require("../config")
+const config = require("../config").default
 const SECRET = Buffer.from(config.JWT_SECRET, "base64")
 
 function sign({ twitchId }) {

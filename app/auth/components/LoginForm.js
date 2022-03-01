@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { AuthenticationError, Link, useMutation, Routes } from "blitz"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"

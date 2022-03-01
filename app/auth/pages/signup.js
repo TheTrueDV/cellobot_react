@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react"
 import { useMutation, useRouterQuery } from "blitz"
 import createUser from "app/users/mutations/createUser"
@@ -33,10 +34,10 @@ function Signup() {
       .then((channel) => console.log(channel))
       .catch(console.error)
   }, [])
-  let twitchId
+
   useEffect(() => {
-    twitchId = window.localStorage.getItem("twitch_id")
-  }, [])
+    // window.location.replace("/")
+  })
 
   return <span>Loading...</span>
 }

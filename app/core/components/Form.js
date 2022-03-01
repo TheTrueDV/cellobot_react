@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { Form as FinalForm } from "react-final-form"
 import { validateZodSchema } from "blitz"
 export { FORM_ERROR } from "final-form"
